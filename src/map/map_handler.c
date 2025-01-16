@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_init.c                                         :+:      :+:    :+:   */
+/*   map_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:14:18 by noldiane          #+#    #+#             */
-/*   Updated: 2024/11/14 10:38:17 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/01/15 23:03:15 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_minimap(t_game *game)
 	int			index;
 	int			current_pixel;
 	const int	map_size = (get_min(WIN_WIDTH, WIN_HEIGHT) / 6) - 10;
-	
+
 	current_pixel = 0;
 	while (current_pixel != map_size)
 	{
@@ -30,7 +30,7 @@ void	init_minimap(t_game *game)
 		//mlx_pixel_put(game->mlx_pointer, game->mlx_window, current_pixel + 10, 10, 0xff3a3a);
 		//mlx_pixel_put(game->mlx_pointer, game->mlx_window, 10, current_pixel + 10, 0xff3a3a);
 		//mlx_pixel_put(game->mlx_pointer, game->mlx_window, map_size + 10, current_pixel + 10, 0xff3a3a);
-		
+
 		current_pixel++;
 	}
 	current_pixel = 0;

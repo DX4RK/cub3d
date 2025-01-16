@@ -1,4 +1,4 @@
-.SILENT:
+#.SILENT:
 
 # INIT #
 
@@ -92,7 +92,7 @@ clean:
 	@echo "$(LIGHT_ORANGE)$(BOLD)[CLEANED]$(RESET) LIBFT"
 	$(MAKE) clean -C $(MINILIBX_DIR) >/dev/null 2>&1
 	@echo "$(LIGHT_ORANGE)$(BOLD)[CLEANED]$(RESET) MINILIBX"
-
+#
 fclean: clean
 	$(RM) $(NAME) >/dev/null 2>&1
 	$(MAKE) fclean -C $(LIBFT_DIR) >/dev/null 2>&1

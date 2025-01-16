@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:29:53 by noldiane          #+#    #+#             */
-/*   Updated: 2024/11/14 11:43:16 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/01/16 00:21:34 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int	main(int argc, char *argv[])
 
 	print_title();
 	fd = parse_arguments(argc, argv);
-	init_game_instance(fd, &game);
-	game->mlx_window = mlx_new_window(game->mlx_pointer, WIN_WIDTH, WIN_HEIGHT, "Cube3D");
-	init_minimap(game);
+
+	init_game(fd, &game);
 	init_hooks(game);
+
+	//draw_square(WIN_WIDTH / 2, WIN_HEIGHT / 2, 10, 0x00FF00, game);
 	print_keys();
 	mlx_loop(game->mlx_pointer);
 	return (0);

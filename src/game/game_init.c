@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:32:13 by noldiane          #+#    #+#             */
-/*   Updated: 2024/11/14 11:42:55 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/01/16 00:52:36 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	set_map(char *line, t_game *game)
 int	get_color(char *str)
 {
 	int color;
-	
+
 	color = str_to_hex(str);
 	free(str);
 	return (color);
@@ -68,9 +68,4 @@ void	set_instance(int fd, t_game *game)
 			game->EA_TEXTURE = ft_substr(line, 3, ft_strlen(line) - 3);
 		free(line);
 	}
-}
-
-void	init_game(int fd, t_game *game)
-{
-	set_instance(fd, game);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:03:51 by noldiane          #+#    #+#             */
-/*   Updated: 2024/11/14 11:41:53 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/01/15 22:35:56 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	print_title()
 	printf("\t██      ██    ██ ██   ██      ██ ██   ██ \n");
 	printf("\t██      ██    ██ ██████   █████  ██   ██ \n");
 	printf("\t██      ██    ██ ██   ██      ██ ██   ██ \n");
-	printf("\t ██████  ██████  ██████  ██████  ██████  \n");  
-	printf(RESET "\n");   
+	printf("\t ██████  ██████  ██████  ██████  ██████  \n");
+	printf(RESET "\n");
 }
 
 void	print_keys()
@@ -90,3 +90,4 @@ void	print_keys()
 	printf(ITAL "\n\t\ttouches des mouvement\n");
 	printf(RESET "\n");
 }
+
