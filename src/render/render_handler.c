@@ -102,6 +102,13 @@ int	draw_loop(t_game *game)
 	}
 
 	mlx_put_image_to_window(game->mlx_pointer, game->mlx_window, game->mlx_image, 0, 0);
+	mlx_string_put(game->mlx_pointer, game->mlx_window, 10, 20, 0x00FF00, ft_strjoin("Position X: ", ft_itoa(game->player->x)));
+	mlx_string_put(game->mlx_pointer, game->mlx_window, 10, 35, 0x00FF00, ft_strjoin("Position Y: ", ft_itoa(game->player->y)));
+	mlx_string_put(game->mlx_pointer, game->mlx_window, 10, 50, 0x00FF00, ft_strjoin("Angle Rotation: ", ft_itoa(game->player->angle * (180.0f / PI))));
+	if (game->player->touching_wall)
+		mlx_string_put(game->mlx_pointer, game->mlx_window, 10, 65, 0x00FF00, "Touching Wall: true");
+	else
+		mlx_string_put(game->mlx_pointer, game->mlx_window, 10, 65, 0x00FF00, "Touching Wall: false");
 	return (0);
 }
 

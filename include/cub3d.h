@@ -43,6 +43,7 @@
 # define RIGHT_ARROW 65363
 
 # define PI 3.141592653589
+# define RAD_TO_DEG = 180.0f / PI;
 
 # define QUIT_KEY 97
 # define ESC_KEY 65307
@@ -70,6 +71,8 @@ typedef	struct s_player
 
 	bool	rotate_left;
 	bool	rotate_right;
+
+	bool	touching_wall;
 } t_player;
 
 typedef struct s_game

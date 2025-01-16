@@ -49,6 +49,8 @@ void	init_player(t_player *player)
 	player->key_right = false;
 	player->rotate_left = false;
 	player->rotate_right = false;
+
+	player->touching_wall = false;
 }
 
 void	init_game_instance(t_game *game)
