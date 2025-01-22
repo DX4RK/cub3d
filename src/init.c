@@ -6,7 +6,7 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:20:33 by noldiane          #+#    #+#             */
-/*   Updated: 2025/01/15 23:35:44 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:49:56 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,13 @@ void	init_instance(t_game *game)
 
 void	init_player(t_player *player)
 {
-	player->x = WIN_WIDTH / 2;
-	player->y = WIN_HEIGHT / 2;
+	player->pos_x = WIN_WIDTH / 2;
+	player->pos_y = WIN_HEIGHT / 2;
 	player->angle = PI / 2;
+	player->dir_x = 0;
+	player->dir_y = -1;
+	player->plane_x = 0.66;
+	player->plane_y = 0;
 
 	player->key_up = false;
 	player->key_down = false;
@@ -55,12 +59,17 @@ void	init_player(t_player *player)
 
 void	init_game_instance(t_game *game)
 {
+	int w, h;
 	init_instance(game);
 	init_player(game->player);
 	game->mlx_pointer = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx_pointer, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	game->mlx_image = mlx_new_image(game->mlx_pointer, WIN_WIDTH, WIN_HEIGHT);
 	game->data = mlx_get_data_addr(game->mlx_image, &game->bpp, &game->size_line, &game->edian);
+
+	game->img_test = mlx_xpm_file_to_image(game->mlx_pointer, "wall.xpm", &w, &h);
+	game->img_data = mlx_get_data_addr(game->img_test, &game->img_bpp, &game->sz_img, &game->img_endian);
+
 	mlx_put_image_to_window(game->mlx_pointer, game->mlx_window, game->mlx_image, 0, 0);
 }
 

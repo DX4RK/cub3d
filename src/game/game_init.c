@@ -6,13 +6,13 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:32:13 by noldiane          #+#    #+#             */
-/*   Updated: 2025/01/16 00:52:36 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:23:26 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_map(char *line, t_game *game)
+void	set_map(char *line, t_game *game, int end)
 {
 	int			i;
 	char		**new_map;
@@ -28,7 +28,10 @@ void	set_map(char *line, t_game *game)
 	game->map_height = game->map_height + 1;
 	if (game->map)
 		free(game->map);
-	new_map[i] = ft_strdup(line);
+	if (end)
+		new_map[i] = 0;
+	else
+		new_map[i] = ft_strdup(line);
 	game->map = new_map;
 }
 
@@ -52,7 +55,7 @@ void	set_instance(int fd, t_game *game)
 		if (line[0] == '1')
 		{
 			line_count++;
-			set_map(line, game);
+			set_map(line, game, 0);
 		}
 		if (line[0] == 'F')
 			game->F_COLOR = get_color(ft_substr(line, 2, ft_strlen(line) - 2));
@@ -68,4 +71,5 @@ void	set_instance(int fd, t_game *game)
 			game->EA_TEXTURE = ft_substr(line, 3, ft_strlen(line) - 3);
 		free(line);
 	}
+	set_map(line, game, 1);
 }

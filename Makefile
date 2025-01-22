@@ -67,7 +67,7 @@ $(INIT):
 	@echo "\t██      ██    ██ ██████   █████  ██   ██ "
 	@echo "\t██      ██    ██ ██   ██      ██ ██   ██ "
 	@echo "\t ██████  ██████  ██████  ██████  ██████  "
-	@echo "$(RESET)" 
+	@echo "$(RESET)"
 
 $(LIBFT_DIR)/libft.a:
 	@start=$$(date +%s)

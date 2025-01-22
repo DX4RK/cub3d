@@ -6,7 +6,7 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:26:06 by noldiane          #+#    #+#             */
-/*   Updated: 2025/01/16 01:07:17 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:56:30 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 /* DATA */
 
 # define DEBUG 0
+
+# define MOVE_SPEED 0.5;
+# define ROTATE_SPEED 0.015
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
@@ -60,9 +63,14 @@ typedef struct t_rgb
 
 typedef	struct s_player
 {
-	float	x;
-	float	y;
-	float	angle;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+
+	int 	angle;
 
 	bool	key_up;
 	bool	key_down;
@@ -95,6 +103,11 @@ typedef struct s_game
 	void	*mlx_image;
 	void	*mlx_window;
 	void	*mlx_pointer;
+	void	*img_test;
+	char	*img_data;
+	int		img_bpp;
+	int		img_endian;
+	int		sz_img;
 
 	char	*data;
 	int		bpp;
