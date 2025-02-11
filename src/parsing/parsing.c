@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+/*
 int	parse_arguments(int argc, char *argv[])
 {
 	int		fd;
@@ -40,3 +40,4 @@ int	parse_arguments(int argc, char *argv[])
 	}
 	return (fd);
 }
+*/

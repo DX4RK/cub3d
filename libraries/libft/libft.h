@@ -31,7 +31,7 @@ int		ft_tolower(int c);
 int		ft_isalnum(int cr);
 int		ft_isprint(int arg);
 int		ft_isalpha(int str);
-int		ft_isdigit(int dgt);
+//int		ft_isdigit(int dgt);
 int		ft_atoi(const char *str);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);

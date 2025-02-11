@@ -20,12 +20,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <fcntl.h>
 
-# include "colors.h"
-# include "errors.h"
-# include "libft.h"
-# include "mlx.h"
-# include "mlx_int.h"
 
 /* DATA */
 
@@ -51,6 +47,33 @@
 # define QUIT_KEY 97
 # define ESC_KEY 65307
 # define EXIT_BUTTON
+
+
+# define RESET	"\e[0m"
+
+# define BOLD	"\e[1m"
+# define DIM	"\e[2m"
+# define ITAL	"\e[3m"
+# define ULINE	"\e[4m"
+
+# define RED	"\e[31m"
+
+# define LIGHT_RED "\033[1;31m"
+# define LIGHT_ORANGE "\033[38;5;214m"
+
+# define ERROR_MISSING_CUB "missing .cub file, or too may arguments!"
+# define ERROR_WRONG_FORMAT "wrong file format!"
+# define FILE_NOT_EXIST "this file does not exist, or not enough permission to read file!"
+# define ERROR_MALLOC_1 "game instance allocation failed."
+
+# define BUFFER_SIZE 5
+
+
+
+
+
+
+
 
 /* STRUCTURES */
 
@@ -143,7 +166,8 @@ typedef struct s_game
 	E_M, //empty map
 	I_C, //invalide characters
 	L_O_S, //line only with spaces
-	M_N_C //map not closed
+	M_N_C, //map not closed
+	M_N_S_L_L //map not same line lenght
 }	t_ErrorType_Parsing;
 
  typedef struct s_parsing
@@ -171,6 +195,7 @@ typedef struct s_game
 	int						player_x;
 
 	t_ErrorType_Parsing		error_code;//quel type d'erreur à defaut à 0 donc continue la boucle
+	int						map_height;
 }	t_parsing;
 
 /************************************************/
