@@ -81,7 +81,7 @@ $(MINILIBX_DIR)/libmlx.a:
 	@start=$$(date +%s)
 	@echo "\t─────────────────────────────────────────"
 	@echo "\t\t$(LIGHT_YELLOW)$(BOLD)    [BUILDING]$(RESET) minilibx..."
-	@$(MAKE) -s -C $(MINILIBX_DIR) >/dev/null 2>&1
+	@$(MAKE) -s -C $(MINILIBX_DIR)
 	@end=$$(date +%s)
 	@echo "\t$(LIGHT_GREEN)$(BOLD)    [✓SUCCESS]$(RESET) built in $$((end - start)) seconds"
 
@@ -90,7 +90,7 @@ clean:
 	@echo "$(LIGHT_ORANGE)$(BOLD)[CLEANED]$(RESET) OBJECTS"
 	$(MAKE) clean -C $(LIBFT_DIR) >/dev/null 2>&1
 	@echo "$(LIGHT_ORANGE)$(BOLD)[CLEANED]$(RESET) LIBFT"
-	$(MAKE) clean -C $(MINILIBX_DIR) >/dev/null 2>&1
+	$(MAKE) clean -C $(MINILIBX_DIR)
 	@echo "$(LIGHT_ORANGE)$(BOLD)[CLEANED]$(RESET) MINILIBX"
 #
 fclean: clean

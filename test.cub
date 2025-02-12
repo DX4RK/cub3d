@@ -1,14 +1,13 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-F 145,255,102
-C 225,30,0
+NO misc/cool_textures/1.xpm
+SO misc/cool_textures/2.xpm
+WE misc/cool_textures/3.xpm
+EA misc/cool_textures/4.xpm
+F 112,185,135
+C 190,249,255
 1111111111111111
 1000000000000001
 1000000000000001
 1000001000000001
 1000000000000001
-1000000000000001
+10000000000000N1
 1111111111111111
-

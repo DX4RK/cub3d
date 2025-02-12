@@ -15,10 +15,8 @@
 
 void reset_buffer(char **buffer)
 {
-	printf("Received buffer: %p\n", (void*)*buffer);  // Debug print
     if (buffer && *buffer)
     {
-		printf("free\n");
         free(*buffer);
         *buffer = NULL;
     }
@@ -123,7 +121,7 @@ char	*get_next_line(int fd, int t)
 		return (NULL);
 	line = extract_line(buffer);
 	buffer = next_line(buffer);
-    
+
 	return (line);
 }
 
@@ -132,7 +130,7 @@ int	main(int argc, char *argv[])
 {
 	int	fd;
     int		lines;
-	char	*line; 
+	char	*line;
 
 	printf("BUFFER SIZE: %d\n", BUFFER_SIZE);
 

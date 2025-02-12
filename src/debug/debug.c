@@ -16,6 +16,7 @@ void	print_game_instance(t_game *game)
 {
 	int	map_index = 0;
 
+	//printf("tttt\")
 	printf("F_COLOR: %d\n", game->F_COLOR);
 	printf("C_COLOR: %d\n", game->C_COLOR);
 	printf("NO_TEXTURE: %s\n", game->NO_TEXTURE);

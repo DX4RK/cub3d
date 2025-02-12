@@ -6,22 +6,23 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:04:15 by noldiane          #+#    #+#             */
-/*   Updated: 2025/01/15 22:43:38 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:37:56 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	put_pixel(int x, int y, int color, t_game *game)
+void put_pixel(int x, int y, int color, t_game *game)
 {
-	if (x >= WIN_WIDTH || y >= WIN_HEIGHT || x < 0 || y < 0)
-		return;
+    char *dst;
 
-	int	index = y * game->size_line + x * game->bpp / 8;
-	game->data[index] = color & 0xFF;
-	game->data[index + 1] = (color >> 8) & 0xFF;
-	game->data[index + 2] = (color >> 16) & 0xFF;
+    if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
+        return;
+
+    dst = game->mlx_image->data + (y * game->mlx_image->size_line + x * (game->mlx_image->bpp / 8));
+    *(unsigned int *)dst = color;
 }
+
 
 void	draw_square(int x, int y, int size, int color, t_game *game)
 {
@@ -46,7 +47,7 @@ void	draw_square(int x, int y, int size, int color, t_game *game)
 		i++;
 	}
 	i = 0;
-	while (i < size)
+	while (i <= size)
 	{
 		put_pixel(x + i, y + size, color, game);
 		i++;

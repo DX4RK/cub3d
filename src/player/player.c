@@ -76,7 +76,7 @@ void	move_player(t_game *game, t_player *player)
 		new_x = game->player->pos_x + player->dir_x * MOVE_SPEED;
 		new_y = game->player->pos_y + player->dir_y * MOVE_SPEED;
 	}
-	if (player->key_down)
+	else if (player->key_down)
 	{
 		new_x = game->player->pos_x - player->dir_x * MOVE_SPEED;
 		new_y = game->player->pos_y - player->dir_y * MOVE_SPEED;
@@ -86,7 +86,7 @@ void	move_player(t_game *game, t_player *player)
 		new_x = game->player->pos_x + player->dir_y * MOVE_SPEED;
 		new_y = game->player->pos_y - player->dir_x * MOVE_SPEED;
 	}
-	if (player->key_right)
+	else if (player->key_right)
 	{
 		new_x = game->player->pos_x - player->dir_y * MOVE_SPEED;
 		new_y = game->player->pos_y + player->dir_x * MOVE_SPEED;
@@ -106,13 +106,14 @@ void	move_player(t_game *game, t_player *player)
 		player->plane_y = tmp_x * sin(rotate_speed) + player->plane_y * cos(rotate_speed);
 	}
 
-	if ((new_x != player->pos_x || new_y != player->pos_y) && !touch(new_x, new_y, game))
+	if (touch(new_x, new_y, game) || (player->shortest_distance <= (FOV / 2.5) && !player->key_down))
+		player->touching_wall = true;
+	else if ((player->pos_x != new_x) || (player->pos_y != new_y))
 	{
+		player->touching_wall = false;
 		player->pos_x = new_x;
 		player->pos_y = new_y;
-		player->touching_wall = false;
 	}
-	else
-		player->touching_wall = true;
-	//player->angle = atan2(player->dir_y, player->dir_x);
+	player->angle = atan2(player->dir_y, player->dir_x);
 }
+//|| (player->shortest_distance <= (FOV / 2) && !player->key_down)

@@ -14,7 +14,6 @@
 
 int	key_press(int	key_code, t_game *game)
 {
-	//printf("key_pressed: %d\n", key_code);
 	if (key_code == QUIT_KEY || key_code == ESC_KEY)
 		stop_game(game);
 

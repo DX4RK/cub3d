@@ -6,70 +6,61 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:32:13 by noldiane          #+#    #+#             */
-/*   Updated: 2025/01/18 15:23:26 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/01/29 11:17:44 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_map(char *line, t_game *game, int end)
+char	*ft_strdup2(const char *str)
 {
-	int			i;
-	char		**new_map;
+	size_t	i;
+	char	*ptr;
 
 	i = 0;
-	new_map = malloc(sizeof(char *) * (game->map_height + 1));
-	while (game->map && i < game->map_height)
+	ptr = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
+	if (!ptr)
 	{
-		new_map[i] = ft_strdup(game->map[i]);
-		free(game->map[i]);
+		return (NULL);
+	}
+	while (str[i] != '\0' && str[i] != '\n')
+	{
+		ptr[i] = str[i];
 		i++;
 	}
-	game->map_height = game->map_height + 1;
-	if (game->map)
-		free(game->map);
-	if (end)
-		new_map[i] = 0;
-	else
-		new_map[i] = ft_strdup(line);
-	game->map = new_map;
+	ptr[i] = '\0';
+	return (ptr);
 }
 
-int	get_color(char *str)
+
+char	**clone_map(t_parsing *parsing_info)
 {
-	int color;
+	int i;
+	char **map;
 
-	color = str_to_hex(str);
-	free(str);
-	return (color);
-}
-
-void	set_instance(int fd, t_game *game)
-{
-	int	line_count;
-	char	*line;
-
-	line_count = 0;
-	while ((line = get_next_line(fd, 0)) != NULL)
+	i = 0;
+	map = malloc(sizeof(char *) * parsing_info->map_height + 1);
+	while (parsing_info->map[i] && i <= parsing_info->map_height)
 	{
-		if (line[0] == '1')
-		{
-			line_count++;
-			set_map(line, game, 0);
-		}
-		if (line[0] == 'F')
-			game->F_COLOR = get_color(ft_substr(line, 2, ft_strlen(line) - 2));
-		if (line[0] == 'C')
-			game->C_COLOR = get_color(ft_substr(line, 2, ft_strlen(line) - 2));
-		if (line[0] == 'N' && line[1] == 'O')
-			game->NO_TEXTURE = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (line[0] == 'S' && line[1] == 'O')
-			game->SO_TEXTURE = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (line[0] == 'W' && line[1] == 'E')
-			game->WE_TEXTURE = ft_substr(line, 3, ft_strlen(line) - 3);
-		if (line[0] == 'E' && line[1] == 'A')
-			game->EA_TEXTURE = ft_substr(line, 3, ft_strlen(line) - 3);
-		free(line);
+		map[i] = ft_strdup2(parsing_info->map[i]);
+		i++;
 	}
-	set_map(line, game, 1);
+	map[i] = 0;
+	return (map);
+}
+
+void	fill_game(t_game *game, t_parsing *parsing_info)
+{
+	game->F_COLOR = parsing_info->F_COLOR;
+	game->C_COLOR = parsing_info->C_COLOR;
+	game->NO_TEXTURE = ft_strdup(parsing_info->NO_TEXTURE);
+	game->SO_TEXTURE = ft_strdup(parsing_info->SO_TEXTURE);
+	game->WE_TEXTURE = ft_strdup(parsing_info->WE_TEXTURE);
+	game->EA_TEXTURE = ft_strdup(parsing_info->EA_TEXTURE);
+
+	game->map = clone_map(parsing_info);
+	game->map_height = parsing_info->map_height;
+
+	game->player->pos_x = (parsing_info->player_x * TILE_SIZE) + 10;
+	game->player->pos_y = (parsing_info->player_y * TILE_SIZE) + 10;
 }
