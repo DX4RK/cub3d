@@ -62,6 +62,19 @@ void	move_player(t_game *game, t_player *player)
 	//}
 }
 */
+void set_player_angle(t_player *player, double angle_degrees)
+{
+    double angle_radians = angle_degrees * (PI / 180.0);
+    player->dir_x = cos(angle_radians);
+    player->dir_y = sin(angle_radians);
+
+    double plane_length = tan(30.0 * (PI / 180.0));
+    player->plane_x = -player->dir_y * plane_length;
+    player->plane_y = player->dir_x * plane_length;
+
+	player->angle = atan2(player->dir_y, player->dir_x);
+}
+
 
 void	move_player(t_game *game, t_player *player)
 {

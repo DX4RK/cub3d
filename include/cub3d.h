@@ -6,7 +6,7 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:26:06 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/10 15:01:36 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:01:23 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef enum e_error
 	int						player_set;//boolean
 	int						player_y;
 	int						player_x;
+	int						player_letter;
 
 	t_ErrorType_Parsing		error_code;//quel type d'erreur à defaut à 0 donc continue la boucle
 	int						map_height;
@@ -198,6 +199,8 @@ void	print_error(char *str);
 void	init_minimap(t_game *game);
 int rgb_to_int(int r, int g, int b);
 int	str_to_hex(char *str);
+
+void set_player_angle(t_player *player, double angle_degrees);
 
 int	get_min(int value1, int value2);
 

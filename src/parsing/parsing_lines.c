@@ -71,6 +71,7 @@ int	check_map_line(char *line, t_parsing *parsing_info, int y)
 			parsing_info->player_set = 1;
 			parsing_info->player_y = y;
 			parsing_info->player_x = i;
+			parsing_info->player_letter = line[i];
 		}
 		else if (line[i] != ' ' && line[i] != '1' && line[i] != '0')
 		{

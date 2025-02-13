@@ -26,17 +26,17 @@ t_image *get_texture(int flag, t_game *game)
 	if (flag == 0)
 	{
 		if (game->ray->ray_ngl > PI / 2 && game->ray->ray_ngl < 3 * (PI / 2))
-			current_texture = game->textures->WE;
+			current_texture = game->textures->SO;
 		else
-			current_texture = game->textures->EA;
+			current_texture = game->textures->NO;
 
 	}
 	else
 	{
 		if (game->ray->ray_ngl > 0 && game->ray->ray_ngl < PI)
-			current_texture = game->textures->SO;
+			current_texture = game->textures->EA;
 		else
-			current_texture = game->textures->NO;
+			current_texture = game->textures->WE;
 	}
 	return (current_texture);
 }
