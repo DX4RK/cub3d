@@ -6,7 +6,7 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:26:06 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/13 14:01:23 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:05:36 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,12 @@ typedef struct s_textures
 	struct s_image *EA;
 } t_textures;
 
+typedef struct s_position
+{
+	double x;
+	double y;
+} t_position;
+
 typedef	struct s_player
 {
 	double	pos_x;
@@ -141,7 +147,6 @@ typedef	struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	int	test;
 	double	shortest_distance;
 
 	double 	angle;
@@ -167,9 +172,6 @@ typedef struct s_game
 	int		F_COLOR;
 	int		C_COLOR;
 
-	double		camera_x;
-	double		camera_y;
-
 	char	*NO_TEXTURE;
 	char	*SO_TEXTURE;
 	char	*WE_TEXTURE;
@@ -177,11 +179,6 @@ typedef struct s_game
 
 	void	*mlx_window;
 	void	*mlx_pointer;
-	void	*img_test;
-	char	*img_data;
-	int		img_bpp;
-	int		img_endian;
-	int		sz_img;
 
 	struct	s_image *mlx_image;
 
@@ -198,7 +195,6 @@ void	print_error(char *str);
 
 void	init_minimap(t_game *game);
 int rgb_to_int(int r, int g, int b);
-int	str_to_hex(char *str);
 
 void set_player_angle(t_player *player, double angle_degrees);
 
@@ -215,8 +211,7 @@ void	set_instance(int fd, t_game *game);
 
 void	put_pixel(int x, int y, int color, t_game *game);
 int		draw_loop(t_game *game);
-void	move_player(t_game *game, t_player *player);
-void	draw_square(int x, int y, int size, int color, t_game *game);
+void	update_player(t_game *game, t_player *player);
 
 float	distance(float x, float y);
 float	fixed_dist(float x1, float y1, float x2, float y2, t_game *game);
@@ -231,7 +226,16 @@ float nor_angle(float angle);
 void	init_parsing(t_parsing *parsing_info);
 int	parsing(int argc, char **argv, t_parsing *parsing_info);
 
+void	load_texture(t_game *game, char *path, t_image *image);
+
 void	fill_game(t_game *game, t_parsing *parsing_info);
+
+void	draw_floor_ceiling(t_game *game, int ray, int t_pix, int b_pix);
+t_image	*get_texture(int flag, t_game *game);
+int	get_wall_color(t_game *game, int tex_x, int tex_y);
+
+bool	touch(float px, float py, t_game *game);
+int	unit_circle(float angle, char c);
 
 /* PARSING UTILS */
 

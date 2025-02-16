@@ -6,7 +6,7 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:03:51 by noldiane          #+#    #+#             */
-/*   Updated: 2025/01/15 22:35:56 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:49:23 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,47 +19,12 @@ int	get_min(int value1, int value2)
 	return (value1);
 }
 
-int rgb_to_int(int r, int g, int b)
+int	rgb_to_int(int r, int g, int b)
 {
-	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-}
+	int	new_value;
 
-int	get_rgb_value(char *str, int rgb_index)
-{
-	int	i;
-	int	number_len;
-	int	comma_count;
-	char	*value;
-
-	i = 0;
-	number_len = 0;
-	comma_count = 0;
-	while (str[i])
-	{	if (str[i] == ',')
-
-			{
-			comma_count++;
-			if (comma_count == rgb_index)
-				break;
-			number_len = 0;
-		}
-		else
-			number_len++;
-		i++;
-	}
-	value = ft_substr(str, i - number_len, number_len);
-	i = ft_atoi(value);
-	free(value);
-	return (i);
-}
-
-int	str_to_hex(char *str)
-{
-	int	hex_color;
-	hex_color = rgb_to_int(get_rgb_value(str, 1) , \
-	get_rgb_value(str, 2) , \
-	get_rgb_value(str, 3) );
-	return (hex_color);
+	new_value = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+	return (new_value);
 }
 
 void	print_error(char *str)
@@ -70,7 +35,7 @@ void	print_error(char *str)
 		printf("%s\n", str);
 }
 
-void	print_title()
+void	print_title(void)
 {
 	printf(RED "\n");
 	printf("\t ██████ ██    ██ ██████  ██████  ██████  \n");
@@ -81,7 +46,7 @@ void	print_title()
 	printf(RESET "\n");
 }
 
-void	print_keys()
+void	print_keys(void)
 {
 	printf(LIGHT_ORANGE BOLD "\t  [W]" RESET "-> avancer\t");
 	printf(LIGHT_ORANGE BOLD "\t  [S]" RESET "-> reculer\n");
@@ -90,4 +55,3 @@ void	print_keys()
 	printf(ITAL "\n\t\ttouches des mouvement\n");
 	printf(RESET "\n");
 }
-

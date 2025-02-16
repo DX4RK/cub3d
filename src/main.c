@@ -6,11 +6,26 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:29:53 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/13 14:17:04 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:05:27 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	unit_circle(float angle, char c)
+{
+	if (c == 'x')
+	{
+		if (angle > 0 && angle < PI)
+			return (1);
+	}
+	else if (c == 'y')
+	{
+		if (angle > (PI / 2) && angle < (3 * PI) / 2)
+			return (1);
+	}
+	return (0);
+}
 
 int	main(int argc, char *argv[])
 {

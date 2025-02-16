@@ -6,17 +6,16 @@
 /*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:41:03 by noldiane          #+#    #+#             */
-/*   Updated: 2025/01/15 23:36:31 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:45:07 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_press(int	key_code, t_game *game)
+int	key_press(int key_code, t_game *game)
 {
 	if (key_code == QUIT_KEY || key_code == ESC_KEY)
 		stop_game(game);
-
 	if (key_code == FORWARD_KEY)
 		game->player->key_up = true;
 	if (key_code == BACK_KEY)

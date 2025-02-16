@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:48:44 by noldiane          #+#    #+#             */
-/*   Updated: 2024/11/14 13:14:55 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:50:28 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,46 @@ void	free_null_args(char **arg)
 	}
 }
 
+void	free_image(t_game *game, t_image *image)
+{
+	mlx_destroy_image(game->mlx_pointer, image->image);
+	free(image);
+}
+
 void	free_game_instance(t_game *game)
 {
 	int	i;
-	
+
 	i = 0;
 	free_null_args(&game->NO_TEXTURE);
 	free_null_args(&game->SO_TEXTURE);
 	free_null_args(&game->WE_TEXTURE);
 	free_null_args(&game->EA_TEXTURE);
-	while (i < game->map_height && game->map[i])
+	while (game->map[i] && i < game->map_height)
 		free_null_args(&game->map[i++]);
 	free(game->map);
+	free_image(game, game->mlx_image);
+	free_image(game, game->textures->NO);
+	free_image(game, game->textures->SO);
+	free_image(game, game->textures->WE);
+	free_image(game, game->textures->EA);
+}
+
+void	free_game(t_game *game)
+{
+	free_game_instance(game);
+	free(game->ray);
+	free(game->player);
+	free(game->textures);
 }
 
 int	stop_game(t_game *game)
 {
-	free_game_instance(game);
+	free_game(game);
 	mlx_clear_window(game->mlx_pointer, game->mlx_window);
 	mlx_destroy_window(game->mlx_pointer, game->mlx_window);
 	mlx_destroy_display(game->mlx_pointer);
 	mlx_loop_end(game->mlx_pointer);
 	free(game->mlx_pointer);
-	free(game);
 	exit(EXIT_SUCCESS);
 }
