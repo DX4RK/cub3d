@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_other.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 15:55:30 by rbauer            #+#    #+#             */
+/*   Updated: 2025/02/17 15:55:53 by rbauer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	verify_cell_and_neighbors(t_parsing *parsing_info,
@@ -7,11 +19,11 @@ int	verify_cell_and_neighbors(t_parsing *parsing_info,
 
 	c = parsing_info->map[y][x];
 	if (c == ' ')
-		return check_space_rules(parsing_info, y, x);
+		return (check_space_rules(parsing_info, y, x));
 	else if (c == '0')
-		return check_floor_rules(parsing_info, y, x, line_len);
+		return (check_floor_rules(parsing_info, y, x, line_len));
 	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return check_player_rules(parsing_info, y, x, line_len);
+		return (check_player_rules(parsing_info, y, x, line_len));
 	return (0);
 }
 

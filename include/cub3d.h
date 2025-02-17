@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:26:06 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/15 15:05:36 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:07:15 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,13 @@ typedef enum e_error
 	t_ErrorType_Parsing		error_code;//quel type d'erreur à defaut à 0 donc continue la boucle
 	int						map_height;
 }	t_parsing;
+
+typedef struct fill_map
+{
+	int		started_map;
+	int		ended_map;
+	int		return_value;
+} t_fill_map;
 
 typedef struct s_ray
 {
@@ -236,8 +243,17 @@ int	get_wall_color(t_game *game, int tex_x, int tex_y);
 
 bool	touch(float px, float py, t_game *game);
 int	unit_circle(float angle, char c);
+void	set_texture(char *path, t_parsing *parsing_info, int texture_type);
+
+void	free_null_args(char **arg);
 
 /* PARSING UTILS */
+
+int	check_cub_file(char **argv, t_parsing *parsing_info);
+t_fill_map	init_data(t_fill_map data);
+t_fill_map	check_line1(char *line, t_fill_map data, t_parsing *parsing_info);
+t_fill_map	check_line2(char *line, int *y, t_fill_map data, t_parsing *p);
+int	check_line3(t_fill_map data, t_parsing *parsing_info);
 
 int parse_arguments(int argc, char **argv, t_parsing *parsing_info);
 int empty_line_spaces(char *line, t_parsing *parsing_info);
@@ -250,14 +266,14 @@ char *extract_texture_path(char *line, int *i);
 int check_texture_file_valid(char *path);
 int check_xpm_extension(const char *path);
 int verif_texture(char *line, t_parsing *parsing_info, int texture_type);
-int input_data__NOT_MAP(char *line, t_parsing *parsing_info);
+int input_data__not_map(char *line, t_parsing *parsing_info);
 int line_is_empty(char *line);
 int add_map_line(t_parsing *parsing_info, char *str);
 int check_map_line(char *line, t_parsing *parsing_info, int y);
 int test_end_map_lines(t_parsing *parsing_info);
 int fill_map_parsing_info(t_parsing *parsing_info);
 int fill_config_parsing_info(t_parsing *parsing_info);
-int ft_strlen__NO_N(const char *str);
+int ft_strlen__no_n(const char *str);
 char get_neighbor_char(t_parsing *parsing_info, int y, int x, int nb_y);
 int is_in_set(char c, char *str);
 int check_neighbor(t_parsing *parsing_info, int y, int x, char *valid_neighbors);

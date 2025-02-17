@@ -1,13 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 16:13:15 by rbauer            #+#    #+#             */
+/*   Updated: 2025/02/17 17:05:29 by rbauer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int	input_data__NOT_MAP(char *line, t_parsing *parsing_info)
+int	check_1(char *line, t_parsing *parsing_info)
 {
 	if (line[0] == 'F' && line[1] == ' ')
 	{
 		if (verif_color(line, parsing_info, 0) == 1)
-		{
 			return (1);
-		}
 		return (0);
 	}
 	else if (line[0] == 'C' && line[1] == ' ')
@@ -28,7 +38,19 @@ int	input_data__NOT_MAP(char *line, t_parsing *parsing_info)
 			return (1);
 		return (0);
 	}
-	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
+	return (2);
+}
+
+int	input_data__not_map(char *line, t_parsing *parsing_info)
+{
+	const int	return_value = check_1(line, parsing_info);
+
+	if (return_value == 1 || return_value == 0)
+	{
+		printf("eeee\n");
+		return (return_value);
+	}
+	if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
 	{
 		if (verif_texture(line, parsing_info, WE_NUMBER) == 1)
 			return (1);
@@ -62,7 +84,7 @@ int	check_xpm_extension(const char *path)
 	return (0);
 }
 
-int	ft_strlen__NO_N(const char *str)
+int	ft_strlen__no_n(const char *str)
 {
 	int	index;
 
@@ -84,21 +106,7 @@ char	get_neighbor_char(t_parsing *parsing_info, int y, int x,
 	line = parsing_info->map[y];
 	if (!line)
 		return (' ');
-	if (x < 0 || x >= ft_strlen__NO_N(line))
+	if (x < 0 || x >= ft_strlen__no_n(line))
 		return (' ');
 	return (line[x]);
-}
-
-int	is_in_set(char c, char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_check.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 15:38:42 by rbauer            #+#    #+#             */
+/*   Updated: 2025/02/17 16:14:00 by rbauer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	check_neighbor(t_parsing *parsing_info,
@@ -14,10 +26,11 @@ int	check_neighbor(t_parsing *parsing_info,
 	return (0);
 }
 
-int check_player_rules(t_parsing *parsing_info,
+int	check_player_rules(t_parsing *parsing_info,
 	int y, int x, int line_len)
 {
 	char	*valid_neighbors;
+
 	if (y == 0 || y == parsing_info->map_height - 1
 		|| x == 0 || x == line_len - 1)
 	{
@@ -40,6 +53,7 @@ int	check_floor_rules(t_parsing *parsing_info,
 	int y, int x, int line_len)
 {
 	char	*valid_neighbors;
+
 	if (y == 0 || y == parsing_info->map_height - 1
 		|| x == 0 || x == line_len - 1)
 	{
@@ -58,7 +72,7 @@ int	check_floor_rules(t_parsing *parsing_info,
 	return (0);
 }
 
-int check_space_rules(t_parsing *parsing_info,
+int	check_space_rules(t_parsing *parsing_info,
 	int y, int x)
 {
 	char	*valid_neighbors;
@@ -84,7 +98,7 @@ int	check_map_line_valid(t_parsing *parsing_info, int y, int nb_y)
 	line = parsing_info->map[y];
 	if (!line)
 		return (0);
-	line_len = ft_strlen__NO_N(line);
+	line_len = ft_strlen__no_n(line);
 	parsing_info->map_height = nb_y;
 	x = 0;
 	while (x < line_len)

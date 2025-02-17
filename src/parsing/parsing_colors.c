@@ -1,4 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_colors.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 15:39:26 by rbauer            #+#    #+#             */
+/*   Updated: 2025/02/17 15:48:23 by rbauer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
+void	define_sign(char *line, int *i, int *sign)
+{
+	if (line[*i] == '+' || line[*i] == '-')
+	{
+		if (line[*i] == '-')
+			(*sign) = -1;
+		(*i)++;
+	}
+}
 
 int	parse_color_value(char *line, t_parsing *parsing_info, int *i)
 {
@@ -8,12 +30,7 @@ int	parse_color_value(char *line, t_parsing *parsing_info, int *i)
 
 	sign = 1;
 	color_value = -1;
-	if (line[*i] == '+' || line[*i] == '-')
-	{
-		if (line[*i] == '-')
-			sign = -1;
-		(*i)++;
-	}
+	define_sign(line, i, &sign);
 	len = 0;
 	if (ft_isdigit(line[*i]))
 		color_value = 0;
@@ -33,15 +50,18 @@ int	parse_color_value(char *line, t_parsing *parsing_info, int *i)
 
 int	save_color(t_parsing *parsing_info, int color_type)
 {
-	if (parsing_info->red == -1 || parsing_info->green == -1 || parsing_info->blue == -1)
+	if (parsing_info->red == -1 || parsing_info->green == -1 \
+	|| parsing_info->blue == -1)
 	{
 		parsing_info->error_code = M_C_I_M;
 		return (1);
 	}
 	if (color_type == 0)
-		parsing_info->F_COLOR = rgb_to_int(parsing_info->red, parsing_info->green, parsing_info->blue);
+		parsing_info->F_COLOR = rgb_to_int(parsing_info->red, \
+		parsing_info->green, parsing_info->blue);
 	if (color_type == 1)
-		parsing_info->C_COLOR = rgb_to_int(parsing_info->red, parsing_info->green, parsing_info->blue);
+		parsing_info->C_COLOR = rgb_to_int(parsing_info->red, \
+		parsing_info->green, parsing_info->blue);
 	parsing_info->red = -1;
 	parsing_info->green = -1;
 	parsing_info->blue = -1;
@@ -93,12 +113,9 @@ int	verif_color(char *line, t_parsing *parsing_info, int color_type)
 		line = NULL;
 		return (1);
 	}
-	else//pas besoin normalement, peut mettre contenu sans la structure else
-	{
-		free(line);
-		line = NULL;
-		if (parsing_info->C_COLOR != -1 && parsing_info->F_COLOR != -1)
-			parsing_info->color_info_ok = 1;
-	}
+	free(line);
+	line = NULL;
+	if (parsing_info->C_COLOR != -1 && parsing_info->F_COLOR != -1)
+		parsing_info->color_info_ok = 1;
 	return (0);
 }
