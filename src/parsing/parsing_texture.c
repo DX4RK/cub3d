@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:58:53 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/18 12:48:43 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:36:18 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	check_path(char *line, char *path, t_parsing *parsing_info)
 	if (check_xpm_extension(path) != 0)
 	{
 		parsing_info->error_code = M_T_I_M;
-		free(path);
+		free_null_args(&path);
 		//free_null_args(&line);
 		return (1);
 	}
@@ -76,14 +76,14 @@ int	check_texture(char *line, char *path, int i, t_parsing *parsing_info)
 	if (line[i] != '\0' && line[i] != '\n')
 	{
 		parsing_info->error_code = M_T_I_M;
-		free(path);
+		free_null_args(&path);
 		//free_null_args(&line);
 		return (1);
 	}
 	if (check_texture_file_valid(path) != 0)
 	{
 		parsing_info->error_code = M_T_I_M;
-		free(path);
+		free_null_args(&path);
 		//free_null_args(&line);
 		return (1);
 	}
@@ -112,6 +112,7 @@ int	verif_texture(char *line, t_parsing *parsing_info, int texture_type)
 	if (check_texture(line, path, i, parsing_info))
 		return (1);
 	set_texture(path, parsing_info, texture_type);
+	free_null_args(&path);
 	//free_null_args(&line);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:26:06 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/17 17:07:15 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/18 16:39:47 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ bool	touch(float px, float py, t_game *game);
 int	unit_circle(float angle, char c);
 void	set_texture(char *path, t_parsing *parsing_info, int texture_type);
 
+void	free_array(char ***array_ptr);
 void	free_null_args(char **arg);
 
 /* PARSING UTILS */

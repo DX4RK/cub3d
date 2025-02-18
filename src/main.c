@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:29:53 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/15 15:05:27 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:42:47 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,8 @@ void	free_parsing_info(t_parsing *parsing_info)
 	if (parsing_info->map)
 	{
 		i = 0;
-		while (parsing_info->map[i])
-		{
-			free(parsing_info->map[i]);
-			i++;
-		}
-		free(parsing_info->map);
-		parsing_info->map = NULL;
+		(void)i;
+		free_array(&parsing_info->map);
 	}
 	if (parsing_info->NO_TEXTURE)
 		free(parsing_info->NO_TEXTURE);

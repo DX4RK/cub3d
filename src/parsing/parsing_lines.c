@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_lines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:48:34 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/18 12:50:47 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:45:39 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int	add_map_line(t_parsing *parsing_info, char *str)
 	new_map[count] = ft_strdup(str);
 	if (!new_map[count])
 	{
-		free(new_map);
+		free_array(&new_map);
 		return (1);
 	}
 	new_map[count + 1] = NULL;
-	if (parsing_info->map)
-		free(parsing_info->map);
-	if(parsing_info->map)
-		parsing_info->map = NULL;
+	//if (parsing_info->map)
+	//	free_array(&parsing_info->map);
+	//if(parsing_info->map)
+	//	parsing_info->map = NULL;
 		//free_null_args(&(parsing_info->map));
 	parsing_info->map = new_map;
 	return (0);
@@ -108,6 +108,7 @@ int	test_end_map_lines(t_parsing *parsing_info)
 	{
 		if (!line_is_empty(line))
 		{
+			printf("testt 41\n");
 			parsing_info->error_code = M_N_C;
 			free_null_args(&line);
 			return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:34:44 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/18 12:50:07 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:22:47 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	fill_map_parsing_info(t_parsing *parsing_info)
 	{
 		data = check_line1(&line, data, parsing_info);
 		if (data.return_value == 2)
+		{
+			line = get_next_line(parsing_info->fd, 0);
 			continue ;
+		}
 		else if (data.return_value == 1)
 			break ;
 		else
