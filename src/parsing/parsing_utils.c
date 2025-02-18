@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:13:15 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/17 17:05:29 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/18 12:54:51 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	input_data__not_map(char *line, t_parsing *parsing_info)
 
 	if (return_value == 1 || return_value == 0)
 	{
-		printf("eeee\n");
 		return (return_value);
 	}
 	if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')

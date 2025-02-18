@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:58:53 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/17 17:08:15 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/18 12:48:43 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,18 @@ int	check_texture_file_valid(char *path)
 
 int	check_path(char *line, char *path, t_parsing *parsing_info)
 {
+	(void)line;
 	if (!path)
 	{
 		parsing_info->error_code = M_T_I_M;
-		free(line);
+		//free_null_args(&line);
 		return (1);
 	}
 	if (check_xpm_extension(path) != 0)
 	{
 		parsing_info->error_code = M_T_I_M;
 		free(path);
-		free(line);
+		//free_null_args(&line);
 		return (1);
 	}
 	return (0);
@@ -76,14 +77,14 @@ int	check_texture(char *line, char *path, int i, t_parsing *parsing_info)
 	{
 		parsing_info->error_code = M_T_I_M;
 		free(path);
-		free(line);
+		//free_null_args(&line);
 		return (1);
 	}
 	if (check_texture_file_valid(path) != 0)
 	{
 		parsing_info->error_code = M_T_I_M;
 		free(path);
-		free(line);
+		//free_null_args(&line);
 		return (1);
 	}
 	return (0);
@@ -101,7 +102,7 @@ int	verif_texture(char *line, t_parsing *parsing_info, int texture_type)
 		|| (texture_type == EA_NUMBER && parsing_info->EA_TEXTURE != NULL))
 	{
 		parsing_info->error_code = M_T_I_M;
-		free(line);
+		//free_null_args(&line);
 		return (1);
 	}
 	path = extract_texture_path(line, &i);
@@ -111,6 +112,6 @@ int	verif_texture(char *line, t_parsing *parsing_info, int texture_type)
 	if (check_texture(line, path, i, parsing_info))
 		return (1);
 	set_texture(path, parsing_info, texture_type);
-	free(line);
+	//free_null_args(&line);
 	return (0);
 }

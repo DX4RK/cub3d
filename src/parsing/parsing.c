@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:34:44 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/17 17:10:42 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/18 12:50:07 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,15 @@ int	fill_map_parsing_info(t_parsing *parsing_info)
 		{
 			data = check_line2(line, &y, data, parsing_info);
 			if (data.return_value == 1)
+			{
+				free(line);
 				return (1);
+			}
 		}
+		free(line);
 		line = get_next_line(parsing_info->fd, 0);
 	}
+	free(line);
 	if (check_line3(data, parsing_info) == 1)
 		return (1);
 	return (0);
@@ -52,15 +57,24 @@ int	fill_config_parsing_info(t_parsing *parsing_info)
 		|| parsing_info->texter_info_ok != 1)
 		{
 			if (empty_line_spaces(line, parsing_info) == 1)
+			{
+				free(line);
+				line = get_next_line(parsing_info->fd, 0);
 				continue ;
+			}
 			if (input_data__not_map(line, parsing_info) == 1)
+			{
+				free(line);
 				return (1);
+			}
 		}
+		free(line);
 		if (parsing_info->color_info_ok == 1 \
 		&& parsing_info->texter_info_ok == 1)
 			return (0);
 		line = get_next_line(parsing_info->fd, 0);
 	}
+	free(line);
 	return (0);
 }
 

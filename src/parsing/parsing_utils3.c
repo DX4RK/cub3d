@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:01:01 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/17 17:01:09 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/18 12:48:16 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_fill_map	check_line1(char *line, t_fill_map data, t_parsing *parsing_info)
 {
 	if (line_is_empty(line))
 	{
-		free(line);
+		//free_null_args(&line);
 		if (!data.started_map)
 			data.return_value = 2;
 		else
@@ -38,24 +38,24 @@ t_fill_map	check_line2(char *line, int *y, t_fill_map data, t_parsing *p)
 	if (data.ended_map)
 	{
 		p->error_code = M_N_C;
-		free(line);
+		//free_null_args(&line);
 		data.return_value = 1;
 	}
 	data.started_map = 1;
 	if (check_map_line(line, p, *y) == 1 && data.return_value != -1)
 	{
-		free(line);
+		//free_null_args(&line);
 		data.return_value = 1;
 	}
 	if (add_map_line(p, line) == 1 && data.return_value != -1)
 	{
-		free(line);
+		//free_null_args(&line);
 		data.return_value = 1;
 	}
 	if (data.return_value == -1)
 	{
 		(*y)++;
-		free(line);
+		//free_null_args(&line);
 		data.return_value = 0;
 	}
 	return (data);

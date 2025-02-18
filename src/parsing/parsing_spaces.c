@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_spaces.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:56:14 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/17 15:58:22 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/18 12:54:48 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	count_spaces(char *line, int *space, int *other_than_space)
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while (line[i] && ft_strlen(line) > 1)
 	{
 		if (line[i] == ' ')
 			(*space)++;
@@ -38,12 +38,12 @@ int	empty_line_spaces(char *line, t_parsing *parsing_info)
 	if (space > 0 && other_than_space == 0)
 	{
 		parsing_info->error_code = L_O_S;
-		free(line);
+		//free_null_args(&line);
 		return (1);
 	}
 	if (space == 0 && other_than_space == 0)
 	{
-		free(line);
+		//free_null_args(&line);
 		return (1);
 	}
 	return (0);
