@@ -63,6 +63,9 @@ int	add_map_line(t_parsing *parsing_info, char *str)
 	new_map[count + 1] = NULL;
 	if (parsing_info->map)
 		free(parsing_info->map);
+	if(parsing_info->map)
+		parsing_info->map = NULL;
+		//free_null_args(&(parsing_info->map));
 	parsing_info->map = new_map;
 	return (0);
 }
@@ -106,11 +109,13 @@ int	test_end_map_lines(t_parsing *parsing_info)
 		if (!line_is_empty(line))
 		{
 			parsing_info->error_code = M_N_C;
-			free(line);
+			free_null_args(&line);
 			return (1);
 		}
-		free(line);
+		free_null_args(&line);
 		line = get_next_line(parsing_info->fd, 0);
 	}
+	if (line)
+		free_null_args(&line);
 	return (0);
 }

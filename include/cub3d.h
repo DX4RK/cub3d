@@ -251,8 +251,8 @@ void	free_null_args(char **arg);
 
 int	check_cub_file(char **argv, t_parsing *parsing_info);
 t_fill_map	init_data(t_fill_map data);
-t_fill_map	check_line1(char *line, t_fill_map data, t_parsing *parsing_info);
-t_fill_map	check_line2(char *line, int *y, t_fill_map data, t_parsing *p);
+t_fill_map	check_line1(char **line, t_fill_map data, t_parsing *parsing_info);
+t_fill_map	check_line2(char **line, int *y, t_fill_map data, t_parsing *p);
 int	check_line3(t_fill_map data, t_parsing *parsing_info);
 
 int parse_arguments(int argc, char **argv, t_parsing *parsing_info);

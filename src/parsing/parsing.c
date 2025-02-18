@@ -23,24 +23,25 @@ int	fill_map_parsing_info(t_parsing *parsing_info)
 	line = get_next_line(parsing_info->fd, 0);
 	while (line != NULL && parsing_info->error_code == OK)
 	{
-		data = check_line1(line, data, parsing_info);
+		data = check_line1(&line, data, parsing_info);
 		if (data.return_value == 2)
 			continue ;
 		else if (data.return_value == 1)
 			break ;
 		else
 		{
-			data = check_line2(line, &y, data, parsing_info);
+			data = check_line2(&line, &y, data, parsing_info);
 			if (data.return_value == 1)
 			{
-				free(line);
+				free_null_args(&line);
 				return (1);
 			}
 		}
-		free(line);
+		free_null_args(&line);
 		line = get_next_line(parsing_info->fd, 0);
 	}
-	free(line);
+	if (line)
+		free_null_args(&line);
 	if (check_line3(data, parsing_info) == 1)
 		return (1);
 	return (0);

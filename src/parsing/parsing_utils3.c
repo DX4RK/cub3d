@@ -12,13 +12,16 @@
 
 #include "cub3d.h"
 
-t_fill_map	check_line1(char *line, t_fill_map data, t_parsing *parsing_info)
+t_fill_map	check_line1(char **line, t_fill_map data, t_parsing *parsing_info)
 {
-	if (line_is_empty(line))
+	if (line_is_empty(*line))
 	{
-		//free_null_args(&line);
+		//free_null_args(line);//c'etait en commentaire
 		if (!data.started_map)
+		{
+			free_null_args(line);
 			data.return_value = 2;
+		}
 		else
 		{
 			data.ended_map = 1;
@@ -32,7 +35,7 @@ t_fill_map	check_line1(char *line, t_fill_map data, t_parsing *parsing_info)
 	return (data);
 }
 
-t_fill_map	check_line2(char *line, int *y, t_fill_map data, t_parsing *p)
+t_fill_map	check_line2(char **line, int *y, t_fill_map data, t_parsing *p)
 {
 	data.return_value = -1;
 	if (data.ended_map)
@@ -42,14 +45,14 @@ t_fill_map	check_line2(char *line, int *y, t_fill_map data, t_parsing *p)
 		data.return_value = 1;
 	}
 	data.started_map = 1;
-	if (check_map_line(line, p, *y) == 1 && data.return_value != -1)
+	if (check_map_line(*line, p, *y) == 1 && data.return_value != -1)
 	{
 		//free_null_args(&line);
 		data.return_value = 1;
 	}
-	if (add_map_line(p, line) == 1 && data.return_value != -1)
+	if (add_map_line(p, *line) == 1 && data.return_value != -1)
 	{
-		//free_null_args(&line);
+		free_null_args(line);
 		data.return_value = 1;
 	}
 	if (data.return_value == -1)
