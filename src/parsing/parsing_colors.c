@@ -116,6 +116,6 @@ int	verif_color(char *line, t_parsing *parsing_info, int color_type)
 	//free_null_args(&line);
 	line = NULL;
 	if (parsing_info->C_COLOR != -1 && parsing_info->F_COLOR != -1)
-		parsing_info->color_info_ok = 1;
+		parsing_info->col_ok = 1;
 	return (0);
 }

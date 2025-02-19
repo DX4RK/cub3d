@@ -25,7 +25,7 @@ void	set_texture(char *path, t_parsing *parsing_info, int texture_type)
 	if (parsing_info->NO_TEXTURE && parsing_info->SO_TEXTURE
 		&& parsing_info->WE_TEXTURE && parsing_info->EA_TEXTURE)
 	{
-		parsing_info->texter_info_ok = 1;
+		parsing_info->text_ok = 1;
 	}
 }
 
@@ -54,9 +54,11 @@ int	check_cub_file(char **argv, t_parsing *parsing_info)
 	return (0);
 }
 
+/*
 t_fill_map	init_data(t_fill_map data)
 {
 	data.started_map = 0;
 	data.ended_map = 0;
 	return (data);
 }
+*/

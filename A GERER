@@ -1,0 +1,4 @@
+double joueur = leak
+invalide charactère fin de ligne map = leak
+invalide char avant de remplir la map avec et sans espace
+invalide char après la fin de la carte 

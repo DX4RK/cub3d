@@ -12,6 +12,7 @@
 
 #include "cub3d.h"
 
+/*
 t_fill_map	check_line1(char **line, t_fill_map data, t_parsing *parsing_info)
 {
 	if (line_is_empty(*line))
@@ -34,7 +35,9 @@ t_fill_map	check_line1(char **line, t_fill_map data, t_parsing *parsing_info)
 		data.return_value = 0;
 	return (data);
 }
+*/
 
+/*
 t_fill_map	check_line2(char **line, int *y, t_fill_map data, t_parsing *p)
 {
 	data.return_value = -1;
@@ -63,7 +66,9 @@ t_fill_map	check_line2(char **line, int *y, t_fill_map data, t_parsing *p)
 	}
 	return (data);
 }
+*/
 
+/*
 int	check_line3(t_fill_map data, t_parsing *parsing_info)
 {
 	if (data.started_map == 0)
@@ -78,3 +83,4 @@ int	check_line3(t_fill_map data, t_parsing *parsing_info)
 	}
 	return (0);
 }
+*/

@@ -84,13 +84,13 @@ typedef enum e_error
 	int						red;
 	int						green;
 	int						blue;
-	int						color_info_ok;
+	int						col_ok;
 
 	char					*NO_TEXTURE;
 	char					*SO_TEXTURE;
 	char					*WE_TEXTURE;
 	char					*EA_TEXTURE;
-	int						texter_info_ok;
+	int						text_ok;
 
 	//int info_after_map
 
@@ -103,12 +103,23 @@ typedef enum e_error
 	int						map_height;
 }	t_parsing;
 
+/*
 typedef struct fill_map
 {
 	int		started_map;
 	int		ended_map;
 	int		return_value;
 } t_fill_map;
+*/
+
+typedef struct s_fill_map
+{
+	t_parsing	*parsing;
+	char		*line;
+	int			started_map;
+	int			ended_map;
+	int			y;
+}	t_fill_map;
 
 typedef struct s_ray
 {
@@ -192,8 +203,10 @@ typedef struct s_game
 	struct	s_ray *ray;
 	struct	s_player *player;
 	struct	s_textures *textures;
-} t_game;
 
+	struct	s_parsing **parsing_info;
+} t_game;
+void	free_parsing_info(t_parsing *parsing_info);
 /* FUNCTIONS */
 
 void	print_keys();
@@ -213,7 +226,7 @@ int		stop_game(t_game *game);
 void	init_hooks(t_game *game);
 
 void	print_game_instance(t_game *game);
-void	init_game(t_game **game, t_parsing *parsing_info);
+void	init_game(t_game **game, t_parsing **parsing_info);
 void	set_instance(int fd, t_game *game);
 
 void	put_pixel(int x, int y, int color, t_game *game);
@@ -272,7 +285,7 @@ int add_map_line(t_parsing *parsing_info, char *str);
 int check_map_line(char *line, t_parsing *parsing_info, int y);
 int test_end_map_lines(t_parsing *parsing_info);
 int fill_map_parsing_info(t_parsing *parsing_info);
-int fill_config_parsing_info(t_parsing *parsing_info);
+int fill_config_parsing_info(t_parsing *parsing_info, char *line);
 int ft_strlen__no_n(const char *str);
 char get_neighbor_char(t_parsing *parsing_info, int y, int x, int nb_y);
 int is_in_set(char c, char *str);

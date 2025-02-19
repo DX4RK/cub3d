@@ -39,12 +39,12 @@ void	init_parsing(t_parsing *parsing_info)
 	parsing_info->red = -1;
 	parsing_info->green = -1;
 	parsing_info->blue = -1;
-	parsing_info->color_info_ok = -1;
+	parsing_info->col_ok = -1;
 	parsing_info->NO_TEXTURE = NULL;
 	parsing_info->SO_TEXTURE = NULL;
 	parsing_info->WE_TEXTURE = NULL;
 	parsing_info->EA_TEXTURE = NULL;
-	parsing_info->texter_info_ok = -1;
+	parsing_info->text_ok = -1;
 	parsing_info->player_set = -1;
 	parsing_info->player_x = -1;
 	parsing_info->player_y = -1;
@@ -93,7 +93,7 @@ void	init_instance(t_game *game, t_parsing *parsing_info)
 	init_game_instance(game);
 }
 
-void	init_game(t_game **game, t_parsing *parsing_info)
+void	init_game(t_game **game, t_parsing **parsing_info)
 {
 	*game = malloc(sizeof(t_game));
 	if (!(*game))
@@ -101,5 +101,6 @@ void	init_game(t_game **game, t_parsing *parsing_info)
 		print_error(ERROR_MALLOC_1);
 		exit (EXIT_FAILURE);
 	}
-	init_instance(*game, parsing_info);
+	init_instance(*game, *parsing_info);
+	(*game)->parsing_info = parsing_info;
 }

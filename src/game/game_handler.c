@@ -56,11 +56,17 @@ void	free_game(t_game *game)
 
 int	stop_game(t_game *game)
 {
+	free_parsing_info(*(game->parsing_info));
+	free(*(game->parsing_info));
+	*(game->parsing_info) = NULL;
+	//printf("\n\n\n HERE \n\n\n");
 	free_game(game);
 	mlx_clear_window(game->mlx_pointer, game->mlx_window);
 	mlx_destroy_window(game->mlx_pointer, game->mlx_window);
 	mlx_destroy_display(game->mlx_pointer);
 	mlx_loop_end(game->mlx_pointer);
 	free(game->mlx_pointer);
+	free(game);
+	game = NULL;
 	exit(EXIT_SUCCESS);
 }
