@@ -118,6 +118,7 @@ int	main(int argc, char *argv[])
 	if (parsing(argc, argv, parsing_info))
 	{
 		print_error_code(parsing_info);
+		get_next_line(parsing_info->fd, 3);
 		free_parsing_info(parsing_info);
 		free(parsing_info);
 		printf("DEBUG\n");//debug
