@@ -6,20 +6,20 @@
 /*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:26:06 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/17 17:07:15 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:08:38 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
 /* LIBRARIES */
 
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdbool.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdbool.h>
 
 # include "colors.h"
 # include "errors.h"
@@ -32,7 +32,7 @@
 # define DEBUG 0
 
 # define FOV 60
-# define MOVE_SPEED 1;
+# define MOVE_SPEED 1
 # define ROTATE_SPEED 0.015
 
 # define TILE_SIZE 64
@@ -48,7 +48,6 @@
 # define RIGHT_ARROW 65363
 
 # define PI 3.141592653589
-# define RAD_TO_DEG = 180.0f / PI;
 
 # define QUIT_KEY 97
 # define ESC_KEY 65307
@@ -67,14 +66,14 @@ typedef enum e_error
 	P_A_S, //player already set
 	P_N_S, //player not set
 	M_T_I_M, //min texture information missing aka NO SO WE EA or not exist
-	M_C_I_M, //min color information missing aka F_color and c_color or invalide nbs
+	M_C_I_M, //min color info missing aka F_color and c_color or invalide nbs
 	E_M, //empty map
 	I_C, //invalide characters
 	L_O_S, //line only with spaces
 	M_N_C //map not closed
 }	t_ErrorType_Parsing;
 
- typedef struct s_parsing
+typedef struct s_parsing
 {
 	int						fd;
 	char					**map;
@@ -102,15 +101,6 @@ typedef enum e_error
 	t_ErrorType_Parsing		error_code;//quel type d'erreur à defaut à 0 donc continue la boucle
 	int						map_height;
 }	t_parsing;
-
-/*
-typedef struct fill_map
-{
-	int		started_map;
-	int		ended_map;
-	int		return_value;
-} t_fill_map;
-*/
 
 typedef struct s_fill_map
 {
@@ -235,7 +225,6 @@ void	update_player(t_game *game, t_player *player);
 
 float	distance(float x, float y);
 float	fixed_dist(float x1, float y1, float x2, float y2, t_game *game);
-bool	touch(float px, float py, t_game *game);
 
 void cast_rays(t_game *game);
 void render_wall(t_game *game, int ray);
@@ -254,20 +243,20 @@ void	draw_floor_ceiling(t_game *game, int ray, int t_pix, int b_pix);
 t_image	*get_texture(int flag, t_game *game);
 int	get_wall_color(t_game *game, int tex_x, int tex_y);
 
-bool	touch(float px, float py, t_game *game);
 int	unit_circle(float angle, char c);
 void	set_texture(char *path, t_parsing *parsing_info, int texture_type);
 
 void	free_null_args(char **arg);
+void	init_player_look(t_game *game, t_parsing *parsing_info);
 
 /* PARSING UTILS */
 
+void	parsing_line_free(char **line);
+int	parsing_line_malloc(char ***line);
+int	handle_empty_line(t_fill_map *fill_map_info);
+int	handle_non_empty_line(t_fill_map *fill_map_info);
+int	final_check(t_fill_map *fill_map_info);
 int	check_cub_file(char **argv, t_parsing *parsing_info);
-t_fill_map	init_data(t_fill_map data);
-t_fill_map	check_line1(char **line, t_fill_map data, t_parsing *parsing_info);
-t_fill_map	check_line2(char **line, int *y, t_fill_map data, t_parsing *p);
-int	check_line3(t_fill_map data, t_parsing *parsing_info);
-
 int parse_arguments(int argc, char **argv, t_parsing *parsing_info);
 int empty_line_spaces(char *line, t_parsing *parsing_info);
 void skip_spaces(const char *line, int *i);

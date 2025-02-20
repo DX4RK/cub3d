@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:52:26 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/15 15:03:57 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:49:04 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	touch(float px, float py, t_game *game)
+{
+	const int	x = px / TILE_SIZE;
+	const int	y = py / TILE_SIZE;
+
+	if (game->map[y][x] == '1')
+		return (true);
+	return (false);
+}
 
 void	set_player_angle(t_player *player, double angle_degrees)
 {
@@ -96,14 +106,4 @@ void	update_player(t_game *game, t_player *player)
 	}
 	if (player->rotate_left || player->rotate_right)
 		rotate_player(player);
-}
-
-bool	touch(float px, float py, t_game *game)
-{
-	const int	x = px / TILE_SIZE;
-	const int	y = py / TILE_SIZE;
-
-	if (game->map[y][x] == '1')
-		return (true);
-	return (false);
 }

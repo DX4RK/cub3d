@@ -6,7 +6,7 @@
 /*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:12:30 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/17 17:02:07 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/20 14:58:28 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,3 @@ int	check_cub_file(char **argv, t_parsing *parsing_info)
 	}
 	return (0);
 }
-
-/*
-t_fill_map	init_data(t_fill_map data)
-{
-	data.started_map = 0;
-	data.ended_map = 0;
-	return (data);
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 15:01:54 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/15 15:05:17 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:34:55 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	wall_hit(float x, float y, t_game *game)
 		return (0);
 	x_m = floor (x / TILE_SIZE);
 	y_m = floor (y / TILE_SIZE);
-	if ((y_m >= game->map_height || x_m >= 15))
+	if ((y_m >= game->map_height || x_m >= (int)ft_strlen(game->map[y_m])))
 		return (0);
-	if (game->map[y_m] && x_m <= (int)strlen(game->map[y_m]))
+	if (game->map[y_m] && x_m <= (int)ft_strlen(game->map[y_m]))
 		if (game->map[y_m][x_m] == '1')
 			return (0);
 	return (1);

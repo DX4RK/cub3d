@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:48:44 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/14 14:50:28 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:36:11 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	stop_game(t_game *game)
 	free_parsing_info(*(game->parsing_info));
 	free(*(game->parsing_info));
 	*(game->parsing_info) = NULL;
-	//printf("\n\n\n HERE \n\n\n");
 	free_game(game);
 	mlx_clear_window(game->mlx_pointer, game->mlx_window);
 	mlx_destroy_window(game->mlx_pointer, game->mlx_window);

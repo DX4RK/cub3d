@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:39:26 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/18 12:48:16 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:41:22 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,17 +103,14 @@ int	verif_color(char *line, t_parsing *parsing_info, int color_type)
 	if (temp != -1)
 	{
 		parsing_info->error_code = M_C_I_M;
-		//free_null_args(&line);
 		line = NULL;
 		return (1);
 	}
 	if (input_color(line, parsing_info, 1, color_type) == 1)
 	{
-		//free_null_args(&line);
 		line = NULL;
 		return (1);
 	}
-	//free_null_args(&line);
 	line = NULL;
 	if (parsing_info->C_COLOR != -1 && parsing_info->F_COLOR != -1)
 		parsing_info->col_ok = 1;
