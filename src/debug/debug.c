@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:27:06 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/14 14:50:09 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:23:09 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	print_game_instance(t_game *game)
 	int	map_index;
 
 	map_index = 0;
-	printf("F_COLOR: %d\n", game->F_COLOR);
-	printf("C_COLOR: %d\n", game->C_COLOR);
-	printf("NO_TEXTURE: %s\n", game->NO_TEXTURE);
-	printf("SO_TEXTURE: %s\n", game->SO_TEXTURE);
-	printf("WE_TEXTURE: %s\n", game->WE_TEXTURE);
-	printf("EA_TEXTURE: %s\n", game->EA_TEXTURE);
+	printf("f_color: %d\n", game->f_color);
+	printf("c_color: %d\n", game->c_color);
+	printf("no_texture: %s\n", game->no_texture);
+	printf("so_texture: %s\n", game->so_texture);
+	printf("we_texture: %s\n", game->we_texture);
+	printf("ea_texture: %s\n", game->ea_texture);
 	while (game->map[map_index])
 	{
 		printf("%s", game->map[map_index]);

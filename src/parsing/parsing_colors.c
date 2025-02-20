@@ -6,7 +6,7 @@
 /*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:39:26 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/20 14:41:22 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:22:30 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	save_color(t_parsing *parsing_info, int color_type)
 		return (1);
 	}
 	if (color_type == 0)
-		parsing_info->F_COLOR = rgb_to_int(parsing_info->red, \
+		parsing_info->f_color = rgb_to_int(parsing_info->red, \
 		parsing_info->green, parsing_info->blue);
 	if (color_type == 1)
-		parsing_info->C_COLOR = rgb_to_int(parsing_info->red, \
+		parsing_info->c_color = rgb_to_int(parsing_info->red, \
 		parsing_info->green, parsing_info->blue);
 	parsing_info->red = -1;
 	parsing_info->green = -1;
@@ -97,9 +97,9 @@ int	verif_color(char *line, t_parsing *parsing_info, int color_type)
 	int	temp;
 
 	if (color_type == 0)
-		temp = parsing_info->F_COLOR;
+		temp = parsing_info->f_color;
 	else if (color_type == 1)
-		temp = parsing_info->C_COLOR;
+		temp = parsing_info->c_color;
 	if (temp != -1)
 	{
 		parsing_info->error_code = M_C_I_M;
@@ -112,7 +112,7 @@ int	verif_color(char *line, t_parsing *parsing_info, int color_type)
 		return (1);
 	}
 	line = NULL;
-	if (parsing_info->C_COLOR != -1 && parsing_info->F_COLOR != -1)
+	if (parsing_info->c_color != -1 && parsing_info->f_color != -1)
 		parsing_info->col_ok = 1;
 	return (0);
 }

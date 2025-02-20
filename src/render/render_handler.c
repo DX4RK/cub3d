@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:45:18 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/15 14:59:13 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:27:15 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ t_image	*get_texture(int flag, t_game *game)
 	if (flag == 0)
 	{
 		if (game->ray->ray_ngl > PI / 2 && game->ray->ray_ngl < 3 * (PI / 2))
-			current_texture = game->textures->SO;
+			current_texture = game->textures->so;
 		else
-			current_texture = game->textures->NO;
+			current_texture = game->textures->no;
 	}
 	else
 	{
 		if (game->ray->ray_ngl > 0 && game->ray->ray_ngl < PI)
-			current_texture = game->textures->EA;
+			current_texture = game->textures->ea;
 		else
-			current_texture = game->textures->WE;
+			current_texture = game->textures->we;
 	}
 	return (current_texture);
 }

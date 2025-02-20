@@ -6,7 +6,7 @@
 /*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 10:29:53 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/20 14:33:53 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/20 16:10:23 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ void	free_parsing_map(t_parsing *parsing_info)
 void	free_parsing_info(t_parsing *parsing_info)
 {
 	free_parsing_map(parsing_info);
-	if (parsing_info->NO_TEXTURE)
-		free(parsing_info->NO_TEXTURE);
-	if (parsing_info->SO_TEXTURE)
-		free(parsing_info->SO_TEXTURE);
-	if (parsing_info->WE_TEXTURE)
-		free(parsing_info->WE_TEXTURE);
-	if (parsing_info->EA_TEXTURE)
-		free(parsing_info->EA_TEXTURE);
-	parsing_info->NO_TEXTURE = NULL;
-	parsing_info->SO_TEXTURE = NULL;
-	parsing_info->WE_TEXTURE = NULL;
-	parsing_info->EA_TEXTURE = NULL;
+	if (parsing_info->no_texture)
+		free(parsing_info->no_texture);
+	if (parsing_info->so_texture)
+		free(parsing_info->so_texture);
+	if (parsing_info->we_texture)
+		free(parsing_info->we_texture);
+	if (parsing_info->ea_texture)
+		free(parsing_info->ea_texture);
+	parsing_info->no_texture = NULL;
+	parsing_info->so_texture = NULL;
+	parsing_info->we_texture = NULL;
+	parsing_info->ea_texture = NULL;
 	if (parsing_info->fd != -1)
 	{
 		close(parsing_info->fd);
@@ -91,10 +91,10 @@ void	free_game_str(t_game *game)
 		}
 		game->map = NULL;
 	}
-	game->NO_TEXTURE = NULL;
-	game->SO_TEXTURE = NULL;
-	game->WE_TEXTURE = NULL;
-	game->EA_TEXTURE = NULL;
+	game->no_texture = NULL;
+	game->so_texture = NULL;
+	game->we_texture = NULL;
+	game->ea_texture = NULL;
 }
 
 int	main(int argc, char *argv[])
@@ -114,7 +114,6 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	init_game(&game, &parsing_info);
-	print_game_instance(game);
 	init_player_look(game, parsing_info);
 	init_hooks(game);
 	print_keys();

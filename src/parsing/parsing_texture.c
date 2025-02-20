@@ -6,7 +6,7 @@
 /*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:58:53 by rbauer            #+#    #+#             */
-/*   Updated: 2025/02/20 14:42:50 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:23:09 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ int	verif_texture(char *line, t_parsing *parsing_info, int texture_type)
 	char	*path;
 
 	i = 2;
-	if ((texture_type == NO_NUMBER && parsing_info->NO_TEXTURE != NULL)
-		|| (texture_type == SO_NUMBER && parsing_info->SO_TEXTURE != NULL)
-		|| (texture_type == WE_NUMBER && parsing_info->WE_TEXTURE != NULL)
-		|| (texture_type == EA_NUMBER && parsing_info->EA_TEXTURE != NULL))
+	if ((texture_type == NO_NUMBER && parsing_info->no_texture != NULL)
+		|| (texture_type == SO_NUMBER && parsing_info->so_texture != NULL)
+		|| (texture_type == WE_NUMBER && parsing_info->we_texture != NULL)
+		|| (texture_type == EA_NUMBER && parsing_info->ea_texture != NULL))
 	{
 		parsing_info->error_code = M_T_I_M;
 		return (1);

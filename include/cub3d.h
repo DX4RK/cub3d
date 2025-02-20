@@ -6,7 +6,7 @@
 /*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:26:06 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/20 15:08:38 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/20 16:19:52 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@
 typedef enum e_error
 {
 	OK,
-	P_A_S, //player already set
-	P_N_S, //player not set
-	M_T_I_M, //min texture information missing aka NO SO WE EA or not exist
-	M_C_I_M, //min color info missing aka F_color and c_color or invalide nbs
-	E_M, //empty map
-	I_C, //invalide characters
-	L_O_S, //line only with spaces
-	M_N_C //map not closed
+	P_A_S,
+	P_N_S,
+	M_T_I_M,
+	M_C_I_M,
+	E_M,
+	I_C,
+	L_O_S,
+	M_N_C
 }	t_ErrorType_Parsing;
 
 typedef struct s_parsing
@@ -78,27 +78,25 @@ typedef struct s_parsing
 	int						fd;
 	char					**map;
 
-	int						F_COLOR;
-	int						C_COLOR;
+	int						f_color;
+	int						c_color;
 	int						red;
 	int						green;
 	int						blue;
 	int						col_ok;
 
-	char					*NO_TEXTURE;
-	char					*SO_TEXTURE;
-	char					*WE_TEXTURE;
-	char					*EA_TEXTURE;
+	char					*no_texture;
+	char					*so_texture;
+	char					*we_texture;
+	char					*ea_texture;
 	int						text_ok;
 
-	//int info_after_map
-
-	int						player_set;//boolean
+	int						player_set;
 	int						player_y;
 	int						player_x;
 	int						player_letter;
 
-	t_ErrorType_Parsing		error_code;//quel type d'erreur à defaut à 0 donc continue la boucle
+	t_ErrorType_Parsing		error_code;
 	int						map_height;
 }	t_parsing;
 
@@ -113,14 +111,14 @@ typedef struct s_fill_map
 
 typedef struct s_ray
 {
- double ray_ngl; // ray angle
- double distance; // distance to the wall
- double	horiz_x;
+	int		flag;
+	double	ray_ngl;
+	double	distance;
+	double	horiz_x;
 	double	horiz_y;
 	double	vert_x;
 	double	vert_y;
- int  flag;  // flag for the wall
-} t_ray;
+}	t_ray;
 
 typedef struct s_image
 {
@@ -131,23 +129,23 @@ typedef struct s_image
 	int		edian;
 	int		size_line;
 	void	*image;
-} t_image;
+}	t_image;
 
 typedef struct s_textures
 {
-	struct s_image *NO;
-	struct s_image *SO;
-	struct s_image *WE;
-	struct s_image *EA;
-} t_textures;
+	struct s_image	*no;
+	struct s_image	*so;
+	struct s_image	*we;
+	struct s_image	*ea;
+}	t_textures;
 
 typedef struct s_position
 {
-	double x;
-	double y;
-} t_position;
+	double	x;
+	double	y;
+}	t_position;
 
-typedef	struct s_player
+typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
@@ -157,7 +155,7 @@ typedef	struct s_player
 	double	plane_y;
 	double	shortest_distance;
 
-	double 	angle;
+	double	angle;
 	float	fov_rd;
 
 	bool	key_up;
@@ -169,121 +167,112 @@ typedef	struct s_player
 	bool	rotate_right;
 
 	bool	touching_wall;
-} t_player;
+}	t_player;
 
 typedef struct s_game
 {
-	int		map_height;
+	int					map_height;
 
-	char	**map;
+	char				**map;
 
-	int		F_COLOR;
-	int		C_COLOR;
+	int					f_color;
+	int					c_color;
 
-	char	*NO_TEXTURE;
-	char	*SO_TEXTURE;
-	char	*WE_TEXTURE;
-	char	*EA_TEXTURE;
+	char				*no_texture;
+	char				*so_texture;
+	char				*we_texture;
+	char				*ea_texture;
 
-	void	*mlx_window;
-	void	*mlx_pointer;
+	void				*mlx_window;
+	void				*mlx_pointer;
 
-	struct	s_image *mlx_image;
+	struct s_image		*mlx_image;
 
-	struct	s_ray *ray;
-	struct	s_player *player;
-	struct	s_textures *textures;
+	struct s_ray		*ray;
+	struct s_player		*player;
+	struct s_textures	*textures;
 
-	struct	s_parsing **parsing_info;
-} t_game;
-void	free_parsing_info(t_parsing *parsing_info);
+	struct s_parsing	**parsing_info;
+}	t_game;
+
 /* FUNCTIONS */
 
-void	print_keys();
-void	print_title();
+void	print_keys(void);
+void	print_title(void);
 void	print_error(char *str);
+void	set_player_angle(t_player *player, double angle_degrees);
 
-void	init_minimap(t_game *game);
-int rgb_to_int(int r, int g, int b);
-
-void set_player_angle(t_player *player, double angle_degrees);
-
-int	get_min(int value1, int value2);
-
+int		draw_loop(t_game *game);
+int		rgb_to_int(int r, int g, int b);
+int		get_min(int value1, int value2);
 int		key_press(int key_code, t_game *game);
 int		key_release(int key_code, t_game *game);
 int		stop_game(t_game *game);
-void	init_hooks(t_game *game);
+int		parsing(int argc, char **argv, t_parsing *parsing_info);
+int		wall_hit(float x, float y, t_game *game);
+int		get_wall_color(t_game *game, int tex_x, int tex_y);
+int		unit_circle(float angle, char c);
 
+float	nor_angle(float angle);
+
+void	init_hooks(t_game *game);
 void	print_game_instance(t_game *game);
 void	init_game(t_game **game, t_parsing **parsing_info);
-void	set_instance(int fd, t_game *game);
-
 void	put_pixel(int x, int y, int color, t_game *game);
-int		draw_loop(t_game *game);
 void	update_player(t_game *game, t_player *player);
-
-float	distance(float x, float y);
-float	fixed_dist(float x1, float y1, float x2, float y2, t_game *game);
-
-void cast_rays(t_game *game);
-void render_wall(t_game *game, int ray);
-int	wall_hit(float x, float y, t_game *game);
-void cast_rays(t_game *game);
-float nor_angle(float angle);
-
+void	cast_rays(t_game *game);
+void	render_wall(t_game *game, int ray);
+void	cast_rays(t_game *game);
 void	init_parsing(t_parsing *parsing_info);
-int	parsing(int argc, char **argv, t_parsing *parsing_info);
-
 void	load_texture(t_game *game, char *path, t_image *image);
-
 void	fill_game(t_game *game, t_parsing *parsing_info);
-
 void	draw_floor_ceiling(t_game *game, int ray, int t_pix, int b_pix);
-t_image	*get_texture(int flag, t_game *game);
-int	get_wall_color(t_game *game, int tex_x, int tex_y);
-
-int	unit_circle(float angle, char c);
 void	set_texture(char *path, t_parsing *parsing_info, int texture_type);
-
 void	free_null_args(char **arg);
 void	init_player_look(t_game *game, t_parsing *parsing_info);
 
+t_image	*get_texture(int flag, t_game *game);
+
 /* PARSING UTILS */
 
+void	free_parsing_info(t_parsing *parsing_info);
 void	parsing_line_free(char **line);
-int	parsing_line_malloc(char ***line);
-int	handle_empty_line(t_fill_map *fill_map_info);
-int	handle_non_empty_line(t_fill_map *fill_map_info);
-int	final_check(t_fill_map *fill_map_info);
-int	check_cub_file(char **argv, t_parsing *parsing_info);
-int parse_arguments(int argc, char **argv, t_parsing *parsing_info);
-int empty_line_spaces(char *line, t_parsing *parsing_info);
-void skip_spaces(const char *line, int *i);
-int parse_color_value(char *line, t_parsing *parsing_info, int *i);
-int save_color(t_parsing *parsing_info, int color_type);
-int input_color(char *line, t_parsing *parsing_info, int i, int color_type);
-int verif_color(char *line, t_parsing *parsing_info, int color_type);
-char *extract_texture_path(char *line, int *i);
-int check_texture_file_valid(char *path);
-int check_xpm_extension(const char *path);
-int verif_texture(char *line, t_parsing *parsing_info, int texture_type);
-int input_data__not_map(char *line, t_parsing *parsing_info);
-int line_is_empty(char *line);
-int add_map_line(t_parsing *parsing_info, char *str);
-int check_map_line(char *line, t_parsing *parsing_info, int y);
-int test_end_map_lines(t_parsing *parsing_info);
-int fill_map_parsing_info(t_parsing *parsing_info);
-int fill_config_parsing_info(t_parsing *parsing_info, char *line);
-int ft_strlen__no_n(const char *str);
-char get_neighbor_char(t_parsing *parsing_info, int y, int x, int nb_y);
-int is_in_set(char c, char *str);
-int check_neighbor(t_parsing *parsing_info, int y, int x, char *valid_neighbors);
-int check_player_rules(t_parsing *parsing_info, int y, int x, int line_len);
-int check_floor_rules(t_parsing *parsing_info, int y, int x, int line_len);
-int check_space_rules(t_parsing *parsing_info, int y, int x);
-int verify_cell_and_neighbors(t_parsing *parsing_info, int y, int x, int line_len);
-int check_map_line_valid(t_parsing *parsing_info, int y, int nb_y);
-int check_map_valid(t_parsing *parsing_info);
+int		parsing_line_malloc(char ***line);
+int		handle_empty_line(t_fill_map *fill_map_info);
+int		handle_non_empty_line(t_fill_map *fill_map_info);
+int		final_check(t_fill_map *fill_map_info);
+int		check_cub_file(char **argv, t_parsing *parsing_info);
+int		parse_arguments(int argc, char **argv, t_parsing *parsing_info);
+int		empty_line_spaces(char *line, t_parsing *parsing_info);
+void	skip_spaces(const char *line, int *i);
+int		parse_color_value(char *line, t_parsing *parsing_info, int *i);
+int		save_color(t_parsing *parsing_info, int color_type);
+int		input_color(char *line, t_parsing *parsing_info, int i, int color_type);
+int		verif_color(char *line, t_parsing *parsing_info, int color_type);
+char	*extract_texture_path(char *line, int *i);
+int		check_texture_file_valid(char *path);
+int		check_xpm_extension(const char *path);
+int		verif_texture(char *line, t_parsing *parsing_info, int texture_type);
+int		input_data__not_map(char *line, t_parsing *parsing_info);
+int		line_is_empty(char *line);
+int		add_map_line(t_parsing *parsing_info, char *str);
+int		check_map_line(char *line, t_parsing *parsing_info, int y);
+int		test_end_map_lines(t_parsing *parsing_info);
+int		fill_map_parsing_info(t_parsing *parsing_info);
+int		fill_config_parsing_info(t_parsing *parsing_info, char *line);
+int		ft_strlen__no_n(const char *str);
+char	get_neighbor_char(t_parsing *parsing_info, int y, int x, int nb_y);
+int		is_in_set(char c, char *str);
+int		check_neighbor(t_parsing *parsing_info, \
+		int y, int x, char *valid_neighbors);
+int		check_player_rules(t_parsing *parsing_info, int y, int x, int line_len);
+int		check_floor_rules(t_parsing *parsing_info, int y, int x, int line_len);
+int		check_space_rules(t_parsing *parsing_info, int y, int x);
+int		verify_cell_and_neighbors(t_parsing *parsing_info, \
+		int y, int x, int line_len);
+int		check_map_line_valid(t_parsing *parsing_info, int y, int nb_y);
+int		check_map_valid(t_parsing *parsing_info);
+int		read_map(t_fill_map *fill_map_info);
+void	init_fill_map(t_fill_map *fill_map_info, t_parsing *parsing_info);
 
 #endif

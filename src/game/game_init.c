@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:32:13 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/14 14:50:55 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:23:09 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ char	**clone_map(t_parsing *parsing_info)
 
 void	fill_game(t_game *game, t_parsing *parsing_info)
 {
-	game->F_COLOR = parsing_info->F_COLOR;
-	game->C_COLOR = parsing_info->C_COLOR;
-	game->NO_TEXTURE = ft_strdup(parsing_info->NO_TEXTURE);
-	game->SO_TEXTURE = ft_strdup(parsing_info->SO_TEXTURE);
-	game->WE_TEXTURE = ft_strdup(parsing_info->WE_TEXTURE);
-	game->EA_TEXTURE = ft_strdup(parsing_info->EA_TEXTURE);
+	game->f_color = parsing_info->f_color;
+	game->c_color = parsing_info->c_color;
+	game->no_texture = ft_strdup(parsing_info->no_texture);
+	game->so_texture = ft_strdup(parsing_info->so_texture);
+	game->we_texture = ft_strdup(parsing_info->we_texture);
+	game->ea_texture = ft_strdup(parsing_info->ea_texture);
 	game->map = clone_map(parsing_info);
 	game->map_height = parsing_info->map_height;
 	game->player->pos_x = (parsing_info->player_x * TILE_SIZE) + 10;

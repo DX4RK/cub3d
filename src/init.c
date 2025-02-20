@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:20:33 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/14 14:43:52 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:27:06 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ void	init_parsing(t_parsing *parsing_info)
 {
 	parsing_info->fd = -1;
 	parsing_info->map = NULL;
-	parsing_info->F_COLOR = -1;
-	parsing_info->C_COLOR = -1;
+	parsing_info->f_color = -1;
+	parsing_info->c_color = -1;
 	parsing_info->red = -1;
 	parsing_info->green = -1;
 	parsing_info->blue = -1;
 	parsing_info->col_ok = -1;
-	parsing_info->NO_TEXTURE = NULL;
-	parsing_info->SO_TEXTURE = NULL;
-	parsing_info->WE_TEXTURE = NULL;
-	parsing_info->EA_TEXTURE = NULL;
+	parsing_info->no_texture = NULL;
+	parsing_info->so_texture = NULL;
+	parsing_info->we_texture = NULL;
+	parsing_info->ea_texture = NULL;
 	parsing_info->text_ok = -1;
 	parsing_info->player_set = -1;
 	parsing_info->player_x = -1;
@@ -63,10 +63,10 @@ void	init_game_instance(t_game *game)
 	game->mlx_image->data = mlx_get_data_addr(game->mlx_image->image, \
 		&game->mlx_image->bpp, &game->mlx_image->size_line, \
 		&game->mlx_image->edian);
-	load_texture(game, game->NO_TEXTURE, game->textures->NO);
-	load_texture(game, game->SO_TEXTURE, game->textures->SO);
-	load_texture(game, game->WE_TEXTURE, game->textures->WE);
-	load_texture(game, game->EA_TEXTURE, game->textures->EA);
+	load_texture(game, game->no_texture, game->textures->no);
+	load_texture(game, game->so_texture, game->textures->so);
+	load_texture(game, game->we_texture, game->textures->we);
+	load_texture(game, game->ea_texture, game->textures->ea);
 	mlx_put_image_to_window(game->mlx_pointer, game->mlx_window, \
 		game->mlx_image->image, 0, 0);
 }
@@ -74,21 +74,21 @@ void	init_game_instance(t_game *game)
 void	init_instance(t_game *game, t_parsing *parsing_info)
 {
 	game->map_height = 0;
-	game->F_COLOR = 0;
-	game->C_COLOR = 0;
+	game->f_color = 0;
+	game->c_color = 0;
 	game->map = NULL;
-	game->NO_TEXTURE = NULL;
-	game->SO_TEXTURE = NULL;
-	game->WE_TEXTURE = NULL;
-	game->EA_TEXTURE = NULL;
+	game->no_texture = NULL;
+	game->so_texture = NULL;
+	game->we_texture = NULL;
+	game->ea_texture = NULL;
 	game->ray = malloc(sizeof(t_ray));
 	game->player = malloc(sizeof(t_player));
 	game->mlx_image = malloc(sizeof(t_image));
 	game->textures = malloc(sizeof(t_textures));
-	game->textures->NO = malloc(sizeof(t_image));
-	game->textures->SO = malloc(sizeof(t_image));
-	game->textures->WE = malloc(sizeof(t_image));
-	game->textures->EA = malloc(sizeof(t_image));
+	game->textures->no = malloc(sizeof(t_image));
+	game->textures->so = malloc(sizeof(t_image));
+	game->textures->we = malloc(sizeof(t_image));
+	game->textures->ea = malloc(sizeof(t_image));
 	fill_game(game, parsing_info);
 	init_game_instance(game);
 }

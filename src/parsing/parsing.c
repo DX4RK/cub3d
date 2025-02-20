@@ -6,7 +6,7 @@
 /*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:34:44 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/20 14:40:02 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/20 16:16:30 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	fill_map_parsing_info(t_parsing *parsing_info)
 
 	init_fill_map(&fill_map_info, parsing_info);
 	return_value = read_map(&fill_map_info);
+	free_null_args(&fill_map_info.line);
 	if (return_value == 1)
 		return (1);
 	return_value = final_check(&fill_map_info);

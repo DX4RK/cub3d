@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:04:15 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/15 14:59:19 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:22:30 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	draw_floor_ceiling(t_game *game, int ray, int t_pix, int b_pix)
 
 	i = b_pix;
 	while (i < WIN_HEIGHT)
-		put_pixel(ray, i++, game->F_COLOR, game);
+		put_pixel(ray, i++, game->f_color, game);
 	i = 0;
 	while (i < t_pix)
-		put_pixel(ray, i++, game->C_COLOR, game);
+		put_pixel(ray, i++, game->c_color, game);
 }

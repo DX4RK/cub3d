@@ -6,7 +6,7 @@
 /*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:48:44 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/20 14:36:11 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:26:55 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ void	free_game_instance(t_game *game)
 	int	i;
 
 	i = 0;
-	free_null_args(&game->NO_TEXTURE);
-	free_null_args(&game->SO_TEXTURE);
-	free_null_args(&game->WE_TEXTURE);
-	free_null_args(&game->EA_TEXTURE);
+	free_null_args(&game->no_texture);
+	free_null_args(&game->so_texture);
+	free_null_args(&game->we_texture);
+	free_null_args(&game->ea_texture);
 	while (game->map[i] && i < game->map_height)
 		free_null_args(&game->map[i++]);
 	free(game->map);
 	free_image(game, game->mlx_image);
-	free_image(game, game->textures->NO);
-	free_image(game, game->textures->SO);
-	free_image(game, game->textures->WE);
-	free_image(game, game->textures->EA);
+	free_image(game, game->textures->no);
+	free_image(game, game->textures->so);
+	free_image(game, game->textures->we);
+	free_image(game, game->textures->ea);
 }
 
 void	free_game(t_game *game)

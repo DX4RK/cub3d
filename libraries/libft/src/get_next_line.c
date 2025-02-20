@@ -3,31 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noldiane <noldiane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:54:31 by nolans            #+#    #+#             */
-/*   Updated: 2024/11/08 15:42:44 by noldiane         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:56:09 by rbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-void reset_buffer(char **buffer)
-{
-    if (buffer && *buffer)
-    {
-        free(*buffer);
-        *buffer = NULL;
-    }
-}
-
-char	*add_buffer(char *stash, char *buffer)
+char	*add_buffer(char *stash, char *buffer, int reset, char **buff)
 {
 	char	*new_stash;
 
-	new_stash = ft_strjoin(stash, buffer);
-	free(stash);
+	if (reset)
+	{
+		if (buff && *buff)
+		{
+			free(*buff);
+			*buff = NULL;
+		}
+	}
+	else
+	{
+		new_stash = ft_strjoin(stash, buffer);
+		free(stash);
+	}
 	return (new_stash);
 }
 
@@ -50,7 +52,7 @@ char	*read_file(int fd, char *stash)
 			return (NULL);
 		}
 		buffer[bytes_read] = 0;
-		stash = add_buffer(stash, buffer);
+		stash = add_buffer(stash, buffer, 0, NULL);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
@@ -111,7 +113,7 @@ char	*get_next_line(int fd, int t)
 
 	if (t == 3)
 	{
-        reset_buffer(&buffer);
+		add_buffer(NULL, NULL, 1, &buffer);
 		return (NULL);
 	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -121,7 +123,6 @@ char	*get_next_line(int fd, int t)
 		return (NULL);
 	line = extract_line(buffer);
 	buffer = next_line(buffer);
-
 	return (line);
 }
 
