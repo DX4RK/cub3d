@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbauer <rbauer@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: noldiane <noldiane@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:52:26 by noldiane          #+#    #+#             */
-/*   Updated: 2025/02/20 14:49:04 by rbauer           ###   ########.fr       */
+/*   Updated: 2025/02/21 10:34:20 by noldiane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	update_player(t_game *game, t_player *player)
 	{
 		new_position = move_player(game, player);
 		if (touch(new_position.x, new_position.y, game) \
-		|| (player->shortest_distance <= (FOV / 2.5) && !player->key_down))
+		|| (player->shortest_distance <= (FOV / 1.5) && !player->key_down))
 			player->touching_wall = true;
 		else if ((player->pos_x != new_position.x) \
 		|| (player->pos_y != new_position.y))
